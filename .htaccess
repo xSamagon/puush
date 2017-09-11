@@ -1,0 +1,33 @@
+Options +FollowSymLinks
+RewriteEngine On
+
+RewriteCond %{HTTP_HOST} img.DOMAIN1.de$ [NC]
+RewriteRule ^([a-zA-Z0-9]+)$ view.php?image=$1 [NC,L]
+
+RewriteCond %{HTTP_HOST} img.DOMAIN1.de$ [NC]
+RewriteCond %{REQUEST_FILENAME} !-d 
+RewriteCond %{REQUEST_URI} !\.(php)$
+RewriteRule ^([a-zA-Z0-9]+).([a-zA-Z0-9]+)$ view.php?image=$1 [NC,L]
+
+RewriteCond %{HTTP_HOST} img.DOMAIN2.cf$ [NC]
+RewriteRule ^([a-zA-Z0-9]+)$ view.php?image=$1 [NC,L]
+
+RewriteCond %{HTTP_HOST} img.DOMAIN2.cf$ [NC]
+RewriteCond %{REQUEST_FILENAME} !-d 
+RewriteCond %{REQUEST_URI} !\.(php)$
+RewriteRule ^([a-zA-Z0-9]+).([a-zA-Z0-9]+)$ view.php?image=$1 [NC,L]
+
+
+
+RewriteCond %{HTTP_HOST} puush.me$ [NC]
+RewriteRule ^api/up upload.php [NC,L]
+
+RewriteCond %{HTTP_HOST} puush.me$ [NC]
+RewriteRule ^api/auth auth.php [NC,L]
+
+RewriteCond %{HTTP_HOST} puush.me$ [NC]
+RewriteRule ^api/hist history.php [NC,L]
+
+RewriteCond %{HTTP_HOST} puush.me$ [NC]
+RewriteRule ^dl/puush-win.txt$ version.txt [NC,L]
+
