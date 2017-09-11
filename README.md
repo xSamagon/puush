@@ -67,3 +67,16 @@ I think I don't have to say much about this. Just upload the files on your serve
 Make sure you give enough permissions to the files! ( Remember, it has to store files on the server ;) )
 
 # Client
+## Requirements
+You need access to the hosts file of the client and you need the old puush uploader (You can find the uploader in the folder client, or you can download it @puush.me link is in the same folder too)
+
+## Setup
+### Hosts
+Add the following line to the hosts file of your client (C:\System32\drivers\etc\hosts):
+
+**IP.OF.YOUR.SRV puush.me**
+
+### Client
+Just start it and login with your account details, which you created in the accounts table.
+
+
