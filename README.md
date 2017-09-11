@@ -26,10 +26,12 @@ CREATE TABLE `accounts` (
 It creates the table "accounts", here you can add some useraccounts.
 
 **What means "apikey"?**
+
 Puush uses this key to authentificate while uploading and so on. Just make sure you use unique strings.
 Example: 90AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 **What means "domain"? // I don't have an extra domain?**
+
 Well, it's simple. You **can** choose a different domain for every user, but the images are avaiable on all domains.
 Of course you can use only one domain or only the ip of your server.
 Just make sure to add every domain/hostname/ip in your RewriteRules.
