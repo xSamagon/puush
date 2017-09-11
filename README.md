@@ -27,14 +27,27 @@ It creates the table "accounts", here you can add some useraccounts.
 
 **What means "apikey"?**
 
-Puush uses this key to authentificate while uploading and so on. Just make sure you use unique strings.
-Example: 90AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+Puush uses this key to authentificate while uploading an image and so on. Just make sure you use unique strings.
+Examples: 90AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA, 90AAAAAAAAAAAAAAAAAAAAAAAAAAAAAB, 90AAAAAAAAAAAAAAAAAAAAAAAAAAAAAC
 
-**What means "domain"? // I don't have an extra domain?**
+**What means "domain"? // I don't have an additional domain?**
 
 Well, it's simple. You **can** choose a different domain for every user, but the images are avaiable on all domains.
 Of course you can use only one domain or only the ip of your server.
 Just make sure to add every domain/hostname/ip in your RewriteRules.
 
 ### RewriteRules
+I commited a .htaccess file as example. It has two image domains included.
+
+As you can see in it, you just have to duplicate the following part and adapt the domain (img.DOMAIN1.de):
+
+```sql
+RewriteCond %{HTTP_HOST} img.DOMAIN1.de$ [NC]
+RewriteRule ^([a-zA-Z0-9]+)$ view.php?image=$1 [NC,L]
+
+RewriteCond %{HTTP_HOST} img.DOMAIN1.de$ [NC]
+RewriteCond %{REQUEST_FILENAME} !-d 
+RewriteCond %{REQUEST_URI} !\.(php)$
+RewriteRule ^([a-zA-Z0-9]+).([a-zA-Z0-9]+)$ view.php?image=$1 [NC,L]
+```
 
