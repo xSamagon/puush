@@ -4,8 +4,7 @@ This puush server "emulation" is based on the puush server of "ajanvier" (even i
 Puush.me doesn't allow to register an account since a few weeks, so maybe the login will be offline too in the future.
 I wrote the missing Auth-API for this emulator.
 
-# Setup
-## Server
+# Server
 ## Requirements
 You need an webserver with PHP and MySQL. I added only the RewriteRules for Apache, if you want to use NGINX or something else, you have to adapt them!
 
@@ -53,9 +52,18 @@ RewriteRule ^([a-zA-Z0-9]+).([a-zA-Z0-9]+)$ view.php?image=$1 [NC,L]
 
 With this RewriteRules you are able to access your picture without extension or like puush.me with any extension you like.
 **Example:**
-You upload the image asd239asdj.png.
+You uploaded the image asd239asdj.png.
 You can access it via:
 * img.DOMAIN1.de/asd239asdj
 * img.DOMAIN1.de/asd239asdj.png
 * img.DOMAIN1.de/asd239asdj.extension
 * img.DOMAIN1.de/asd239asdj.WhatEverYouWant
+
+### PHP
+I think I don't have to say much about this. Just upload the files on your server and adapt the following two configs.
+* include/config/Database.conf.php
+* include/config/Global.conf.php
+
+Make sure you give enough permissions to the files! ( Remember, it has to store files on the server ;) )
+
+# Client
