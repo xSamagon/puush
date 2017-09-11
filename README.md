@@ -51,3 +51,11 @@ RewriteCond %{REQUEST_URI} !\.(php)$
 RewriteRule ^([a-zA-Z0-9]+).([a-zA-Z0-9]+)$ view.php?image=$1 [NC,L]
 ```
 
+With this RewriteRules you are able to access your picture without extension or like puush.me with any extension you like.
+**Example:**
+You upload the image asd239asdj.png.
+You can access it via:
+* img.DOMAIN1.de/asd239asdj
+* img.DOMAIN1.de/asd239asdj.png
+* img.DOMAIN1.de/asd239asdj.extension
+* img.DOMAIN1.de/asd239asdj.WhatEverYouWant
