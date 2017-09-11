@@ -6,7 +6,7 @@
  * Database description.
  *
  * @version 1.0
- * @author xGr33n
+ * @author xSamagon
  */
 class Database
 {
