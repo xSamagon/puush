@@ -2,8 +2,13 @@
 
 // by https://github.com/ajanvier/puush
 
-include 'includes/config/Global.conf.php';
+include 'includes/config/Database.conf.php';
+include 'includes/classes/Database.class.php';
 include 'includes/classes/Puush.class.php';
+include 'includes/config/Global.conf.php';
+
+$DB = new Database($dbhost, $dbport, $dbuser, $dbpass, $dbname);
+
 
 if (!isset($_GET['image']))
 {
@@ -46,4 +51,5 @@ if ($mime !== FALSE)
 
     // Send the image
     readfile($matched);
+    $DB->updateViewCount($_GET['image']);
 }

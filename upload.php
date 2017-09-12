@@ -6,24 +6,11 @@ include 'includes/config/Global.conf.php';
 
 $DB = new Database($dbhost, $dbport, $dbuser, $dbpass, $dbname);
 
-$info = print_r($_POST, true);
-$info2 = print_r($_FILES, true);
-
-if (isset($_POST["k"]) == false)
+if (isset($_POST["k"]) == false || isset($_FILES['f']) == false || $DB->checkKey($_POST["k"]) == false)
 {
     return;
 }
 
-
-if (isset($_FILES['f']) == false)
-{
-    return;
-}
-
-if (!$DB->checkKey($_POST["k"]))
-{
-    return;
-}
 
 
 $validlnk = $DB->getDomainByKey($_POST["k"]);
@@ -31,18 +18,16 @@ $validlnk = $DB->getDomainByKey($_POST["k"]);
 $file = $_FILES['f'];
 
 if ($file['size'] > $fileMaxSize)
-{
     return;
-}
 
 if (Puush::validateFile($file) == false)
-{
     return;
-}
 
 $extension = Puush::getExtension($file['name']);
 $fileName = Puush::generateFileName($extension);
 
 move_uploaded_file($file['tmp_name'], $uploadDirectory."/".$fileName.".".$extension);
+
+$DB->insertFile($_POST["k"], $fileName, $file["name"], 0);
 
 echo '0,' . sprintf("http://".$validlnk."/%s.".$extension, $fileName) . ',-1,-1';

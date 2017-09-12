@@ -101,4 +101,38 @@ class Database
         $fetched = $qry->fetchAll(PDO::FETCH_ASSOC);
         return $fetched[0]["domain"];
     }
+
+    public function insertFile($apikey, $name, $orginalname, $thumbenabled)
+    {
+        if ($this->db == NULL)
+            die("No Database Connection!");
+
+        $qry = $this->db->prepare("INSERT INTO files(apikey, name, orginalname, thumbenabled, date) VALUES(?, ?, ?, ?, NOW());");
+        $qry->bindParam(1, $apikey);
+        $qry->bindParam(2, $name);
+        $qry->bindParam(3, $orginalname);
+        $qry->bindParam(4, $thumbenabled);
+        $qry->execute();
+    }
+
+    public function updateViewCount($name)
+    {
+        if ($this->db == NULL)
+            die("No Database Connection!");
+
+        $qry = $this->db->prepare("UPDATE files SET viewcount=viewcount+1 WHERE name = ?;");
+        $qry->bindParam(1, $name);
+        $qry->execute();
+    }
+
+    public function getLastFilesByKey($apikey)
+    {
+        if ($this->db == NULL)
+            die("No Database Connection!");
+
+        $qry = $this->db->prepare("SELECT * FROM files WHERE apikey = ? ORDER BY date DESC LIMIT 5;");
+        $qry->bindParam(1, $apikey);
+        $qry->execute();
+        return $qry->fetchAll();
+    }
 }

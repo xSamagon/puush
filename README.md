@@ -11,7 +11,7 @@ You need an webserver with PHP and MySQL. I added only the RewriteRules for Apac
 ## Setup
 
 ### SQL
-First of all create a database and execute the following query:
+First of all create a database and execute the following querys:
 ```sql
 CREATE TABLE `accounts` (
   `email` varchar(64) NOT NULL DEFAULT '',
@@ -20,6 +20,16 @@ CREATE TABLE `accounts` (
   `domain` varchar(200) NOT NULL,
   PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `files` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `apikey` varchar(200) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `orginalname` varchar(200) NOT NULL,
+  `thumbenabled` tinyint(200) NOT NULL DEFAULT '0',
+  `date` datetime DEFAULT NULL,
+  `viewcount` bigint(200) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`,`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 ```
 
 It creates the table "accounts", here you can add some useraccounts.
