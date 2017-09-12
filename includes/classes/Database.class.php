@@ -135,4 +135,38 @@ class Database
         $qry->execute();
         return $qry->fetchAll();
     }
+
+    public function isFileOwner($id,$apikey)
+    {
+        if ($this->db == NULL)
+            die("No Database Connection!");
+
+        $qry = $this->db->prepare("SELECT count(*) as ok FROM files WHERE apikey = ? AND id = ?;");
+        $qry->bindParam(1, $apikey);
+        $qry->bindParam(2, $id);
+        $qry->execute();
+        return $qry->fetch()["ok"] == 1 ? true : false;
+    }
+
+    public function getFileNameByID($id)
+    {
+        if ($this->db == NULL)
+            die("No Database Connection!");
+
+        $qry = $this->db->prepare("SELECT name FROM files WHERE id = ?;");
+        $qry->bindParam(1, $id);
+        $qry->execute();
+        $fetched = $qry->fetchAll(PDO::FETCH_ASSOC);
+        return $fetched[0]["name"];
+    }
+
+    public function deleteFileByID($id)
+    {
+        if ($this->db == NULL)
+            die("No Database Connection!");
+
+        $qry = $this->db->prepare("DELETE FROM files WHERE id = ?;");
+        $qry->bindParam(1, $id);
+        $qry->execute();
+    }
 }

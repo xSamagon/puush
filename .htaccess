@@ -29,5 +29,8 @@ RewriteCond %{HTTP_HOST} puush.me$ [NC]
 RewriteRule ^api/hist history.php [NC,L]
 
 RewriteCond %{HTTP_HOST} puush.me$ [NC]
+RewriteRule ^api/del delete.php [NC,L]
+
+RewriteCond %{HTTP_HOST} puush.me$ [NC]
 RewriteRule ^dl/puush-win.txt$ version.txt [NC,L]
 

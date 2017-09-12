@@ -28,7 +28,7 @@ echo (5-sizeof($lastFiles))."\r\n";
 
 foreach ($lastFiles as $file)
 {
-    echo sprintf("0,%s,http://%s/%s,%s,%d,%d\r\n", $file["date"], $domain, $file["name"], $file["orginalname"], $file["viewcount"], $file["thumbenabled"]);
+    echo sprintf("%d,%s,http://%s/%s,%s,%d,%d\r\n", $file["id"], $file["date"], $domain, $file["name"], $file["orginalname"], $file["viewcount"], $file["thumbenabled"]);
 }
 
 ?>
