@@ -2,3 +2,6 @@
 *.phpproj
 Server/.vs/PHPWebProject1/v15/.suo
 Server/PHPWebProject1.sln
+PuushInitializer/bin
+PuushInitializer/obj
+PuushInitializer/.vs
