@@ -27,16 +27,12 @@ namespace PuushInitializer
                 while (sr.Peek() >= 0)
                 {
                     string txt = sr.ReadLine();
-                    if (txt.StartsWith("ProxyServer"))
-                    {
-                        txt = "ProxyServer = " + textBoxServer.Text;
-                    }
-                    else if (txt.StartsWith("ProxyPort"))
-                    {
-                        txt = "ProxyPort = " + textBoxPort.Text;
-                    }
+                    if (txt.StartsWith("ProxyServer") || txt.StartsWith("ProxyPort"))
+                        continue;
                     lines.Add(txt);
                 }
+                lines.Add("ProxyServer = " + textBoxServer.Text);
+                lines.Add("ProxyPort = " + textBoxPort.Text);
                 sr.Close();
                 StreamWriter sw = new StreamWriter(Environment.ExpandEnvironmentVariables(@"%AppData%\puush\puush.ini"), false);
                 foreach (string line in lines)
@@ -48,7 +44,7 @@ namespace PuushInitializer
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Can't open %appdata%/puush.ini! Error: " + ex.Message);
+                MessageBox.Show("Can't open %appdata%/puush/puush.ini! Error: " + ex.Message);
             }
         }
 
@@ -61,16 +57,12 @@ namespace PuushInitializer
                 while (sr.Peek() >= 0)
                 {
                     string txt = sr.ReadLine();
-                    if (txt.StartsWith("ProxyServer"))
-                    {
-                        txt = "ProxyServer = ";
-                    }
-                    else if (txt.StartsWith("ProxyPort"))
-                    {
-                        txt = "ProxyPort = ";
-                    }
+                    if (txt.StartsWith("ProxyServer") || txt.StartsWith("ProxyPort"))
+                        continue;
                     lines.Add(txt);
                 }
+                lines.Add("ProxyServer = ");
+                lines.Add("ProxyPort = ");
                 sr.Close();
                 StreamWriter sw = new StreamWriter(Environment.ExpandEnvironmentVariables(@"%AppData%\puush\puush.ini"), false);
                 foreach (string line in lines)
@@ -82,7 +74,7 @@ namespace PuushInitializer
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Can't open %appdata%/puush.ini! Error: " + ex.Message);
+                MessageBox.Show("Can't open %appdata%/puush/puush.ini! Error: " + ex.Message);
             }
         }
     }
